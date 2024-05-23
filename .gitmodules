@@ -1,0 +1,3 @@
+[submodule "src/tools"]
+	path = src/tools
+	url = git@gitlab.uniubi.com:fe-team/wo/aiot-uspace-mobile-common/aiot-uspace-mobile-tools.git

@@ -1,0 +1,61 @@
+@import '~taro-ui/dist/style/components/icon.scss';
+@import '~taro-ui/dist/style/components/tab-bar.scss';
+@import '~taro-ui/dist/style/components/badge.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+  background: #ffffff;
+  box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999999;
+  .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 140px;
+    .iconWrap {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: -20px;
+      z-index: 999999;
+      box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1) !important;
+    }
+    .icon {
+      color: #4a4a4a;
+      font-size: 48px;
+      margin-bottom: 2px;
+      width: 48px;
+      height: 48px;
+    }
+    .centerIcon {
+      width: 92px;
+      height: 92px;
+    }
+    .active {
+      color: #000;
+    }
+    .text {
+      font-family: PingFangSC-Regular;
+      font-size: 22px;
+      color: #4a4a4a;
+      line-height: 40px;
+      font-weight: 400;
+    }
+    .activeText {
+      font-weight: 500;
+      color: #000;
+    }
+  }
+}
