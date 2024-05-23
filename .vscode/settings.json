@@ -22,9 +22,6 @@
   "[javascriptreact]": {
     "editor.defaultFormatter": null
   },
-  "[vue]": {
-    "editor.defaultFormatter": null
-  },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -38,9 +35,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[md]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
