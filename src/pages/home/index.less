@@ -1,6 +1,6 @@
 .home {
   background-image: url(https://fe-cloud.uni-ubi.com/image/1716622900305-bg.png?x-oss-process=img/q/80);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
@@ -12,17 +12,29 @@
     opacity: 0.2;
     position: relative;
     top: 3vh;
+    background: radial-gradient(circle at 50% 50%, transparent, gold);
     display: flex;
     justify-content: center;
     align-items: center;
     // 使用CSS动画使元素不停旋转
-    // animation: spin 2s linear infinite;
-    &-item {
-      position: absolute;
-      width: 80px; /* 子元素尺寸 */
-      height: 80px;
+    animation: rippleAnimation 3s infinite;
+    &-item1 {
+      height: 100vw;
+      width: 100vw;
       border-radius: 50%;
-      background-color: #333; /* 子元素背景色 */
+      position: absolute;
+      opacity: 0.2;
+      background: radial-gradient(circle at 50% 50%, transparent, #ff9800);
+      animation: rippleAnimation 5s infinite;
+    }
+    &-item2 {
+      height: 100vw;
+      width: 100vw;
+      border-radius: 50%;
+      position: absolute;
+      opacity: 0.2;
+      background: radial-gradient(circle at 50% 50%, transparent, gold);
+      animation: rippleAnimation 7s infinite;
     }
   }
   &-processBox {
@@ -68,13 +80,38 @@
     background-image: url(../../assets/images/gui.webp);
     background-size: contain;
     background-repeat: no-repeat;
-    width: 100vw;
+    width: 94vw;
     height: 784px;
+    border-radius: 3vw;
+    position: relative;
+    &-title {
+      position: absolute;
+      top: 3vh;
+      font-size: 48px;
+      color: #fec30a;
+      font-weight: bold;
+      left: 50%;
+      margin-left: -222px;
+    }
   }
   .at-float-layout--active .at-float-layout__container {
-    background-color: #000;
+    background-color: #fec30a;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
+  @keyframes rippleAnimation {
+    from {
+      transform: scale(0);
+      opacity: 0.8;
+    }
+    to {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
   /* 定义旋转关键帧 */
   @keyframes shake {
     0% {

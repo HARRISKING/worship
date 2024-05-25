@@ -17,7 +17,7 @@ return (
       }} className={`${root}-container-warter`}>
         <View>未</View>
         <View>开</View>
-        <View>启</View>
+        <View>光</View>
         </View>
     </View>
     
