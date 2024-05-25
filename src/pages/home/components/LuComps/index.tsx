@@ -1,7 +1,6 @@
 import React from  'react';
 import { View, Image } from '@tarojs/components';
 
-import water1 from '@/assets/images/water2.webp'
 import './index.less'
 interface ILuCompsProps {
   imgName: string;  
@@ -14,8 +13,7 @@ return (
     <View className={`${root}-container`}>
       <Image className={`${root}-container-img`} src={imgName} />
       <View style={{
-        backgroundImage: `url(${water1})`,
-        top: `${100}%`,
+        top: `${rate}%`,
       }} className={`${root}-container-warter`}>
         <View>未</View>
         <View>开</View>
