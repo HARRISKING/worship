@@ -4,24 +4,97 @@
   background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
+  position: relative;
   &-mammon {
-    height: 50vh;
-    // background-image: url(../../assets/images/light.gif);
-    // background-size: contain;
-    // background-repeat: no-repeat;
+    // background-image: url(../../assets/images/ring.webp);
+    height: 100vw;
+    width: 100vw;
+    // background-color: red;
+    border-radius: 50%;
+    opacity: 0.2;
+    position: relative;
+    top: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // 使用CSS动画使元素不停旋转
+    // animation: spin 2s linear infinite;
+    &-item {
+      position: absolute;
+      width: 80px; /* 子元素尺寸 */
+      height: 80px;
+      border-radius: 50%;
+      background-color: #333; /* 子元素背景色 */
+    }
   }
   &-processBox {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border: 1px solid red;
-    &-processItem {
-      background-color: red;
-      width: 18vw;
-      height: 200px;
+    position: relative;
+    margin-top: 10vh;
+  }
+  &-btnBox {
+    display: flex;
+    justify-content: center;
+    width: 88vw;
+    height: 8vh;
+    border-radius: 3vw;
+    background-color: rgb(26, 13, 0);
+    margin: 0 auto;
+    padding-bottom: 18px;
+    margin-top: 11vh;
+
+    &-btn {
+      padding: 4vw 0;
+      font-size: 44rpx;
+      text-align: center;
+      color: #fec30a;
+      font-weight: bold;
+      background-color: #24180e;
+      width: 88vw;
+      border-radius: 3vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: shake 2s infinite;
+      &-icon {
+        width: 66px;
+        height: 66px;
+        margin-right: 20px;
+      }
     }
   }
-  &-person {
-    height: 30vh;
+  /* 定义旋转关键帧 */
+  @keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
+
+    20% {
+      transform: translateX(10px);
+    }
+    30% {
+      transform: translateX(-10px);
+    }
+    40% {
+      transform: translateX(10px);
+    }
+    50% {
+      transform: translateX(-10px);
+    }
+    60% {
+      transform: translateX(10px);
+    }
+    70% {
+      transform: translateX(-10px);
+    }
+    80% {
+      transform: translateX(10px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
   }
 }
