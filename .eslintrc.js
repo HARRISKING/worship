@@ -1,4 +1,4 @@
-// module.exports = {
-//   extends: [require.resolve('uniubi-lint/typescript/react')],
-//   rules: {},
-// };
+module.exports = {
+  extends: [require.resolve('liancheng-lint/typescript/react')],
+  rules: {},
+};
