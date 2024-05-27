@@ -131,7 +131,7 @@ const Page: FC = () => {
   };
   return (
     <View className={root}>
-      {true ? (
+      {false ? (
         <View className={`${root}-calendarBox`}>
           <View className={`${root}-calendarBox-dateBox`}>
             <View className={`${root}-calendarBox-dateBox-timeBox`}>
