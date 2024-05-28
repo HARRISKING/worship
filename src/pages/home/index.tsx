@@ -66,6 +66,14 @@ const Page: FC = () => {
       onMammon();
     }, 2000);
   };
+  // 获取当前时间的时间戳
+  const currentTime = new Date().getTime();
+
+  // 增加两天的毫秒数
+  const oneDay = 2 * 24 * 60 * 60 * 1000;
+
+  // 计算明天的时间戳 修改处
+  const tomorrowTime = 1706407949603 + oneDay;
 
   // 广告完成，获得次数
   const fetchMoreTime = () => {
@@ -160,7 +168,7 @@ const Page: FC = () => {
   };
   return (
     <View className={root}>
-      {false ? (
+      {!!(currentTime > tomorrowTime) ? (
         <View className={`${root}-calendarBox`}>
           <View className={`${root}-calendarBox-dateBox`}>
             <View className={`${root}-calendarBox-dateBox-timeBox`}>
