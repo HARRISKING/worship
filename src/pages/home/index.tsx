@@ -134,6 +134,12 @@ const Page: FC = () => {
 
   useEffect(() => {
     let timeoutId; // 用来保存定时器ID
+
+    // 将屏幕亮度调至最亮
+    wx.setScreenBrightness({
+      value: 1,
+    });
+
     const resetAtMidnight = () => {
       setRateValue(0); // 清空数据
       setNextMidnightTimeout(); // 再次设置定时器，准备下一轮触发
