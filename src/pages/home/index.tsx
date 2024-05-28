@@ -69,8 +69,37 @@ const Page: FC = () => {
 
   // 广告完成，获得次数
   const fetchMoreTime = () => {
-    setCount(4);
-    setMoreVisible(false);
+    // 在页面中定义激励视频广告
+    let videoAd = null;
+
+    // 在页面onLoad回调事件中创建激励视频广告实例
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-5bf9f7aa42580516',
+      });
+      videoAd?.onLoad(() => {});
+      videoAd?.onError((err) => {
+        console.error('激励视频加载失败', err);
+      });
+      videoAd?.onClose((res) => {
+        if (res?.isEnded) {
+          setCount(4);
+          setMoreVisible(false);
+        }
+      });
+    }
+    // 用户触发广告后，显示激励视频广告
+    if (videoAd) {
+      videoAd.show().catch(() => {
+        // 失败重试
+        videoAd
+          .load()
+          .then(() => videoAd.show())
+          .catch((err) => {
+            console.error('激励视频 广告显示失败', err);
+          });
+      });
+    }
   };
 
   const onSubmit = () => {
