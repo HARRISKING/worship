@@ -132,49 +132,20 @@ const Page: FC = () => {
     }
   }, [rateValue]);
 
-  useEffect(() => {
-    let timeoutId; // 用来保存定时器ID
+  const onDayClick = (e) => {
+    setDate(e.value);
+  };
 
+  useEffect(() => {
     // 将屏幕亮度调至最亮
     wx.setScreenBrightness({
       value: 1,
     });
-
-    const resetAtMidnight = () => {
-      setRateValue(0); // 清空数据
-      setNextMidnightTimeout(); // 再次设置定时器，准备下一轮触发
-    };
-
-    const setNextMidnightTimeout = () => {
-      const now = new Date();
-      const midnight = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate() + 1,
-        0,
-        0,
-        0
-      );
-      const delay = midnight.getTime() - now.getTime(); // 计算当前时间到次日0点的时间差
-
-      if (timeoutId !== null) {
-        clearTimeout(timeoutId); // 如果有正在等待的定时器，先清除
-      }
-      timeoutId = setTimeout(resetAtMidnight, delay); // 保存新的定时器ID
-    };
-
-    setNextMidnightTimeout(); // 首次调用，设置定时器
-    return () => {
-      clearTimeout(timeoutId); // 组件卸载时清除定时器
-    };
   }, []);
 
-  const onDayClick = (e) => {
-    setDate(e.value);
-  };
   return (
     <View className={root}>
-      {!!(currentTime > tomorrowTime) ? (
+      {!(currentTime > tomorrowTime) ? (
         <View className={`${root}-calendarBox`}>
           <View className={`${root}-calendarBox-dateBox`}>
             <View className={`${root}-calendarBox-dateBox-timeBox`}>
