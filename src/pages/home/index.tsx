@@ -73,7 +73,7 @@ const Page: FC = () => {
   const oneDay = 2 * 24 * 60 * 60 * 1000;
 
   // 计算明天的时间戳 修改处
-  const tomorrowTime = 1706407949603 + oneDay;
+  const tomorrowTime = 1717037244224 + oneDay;
 
   // 广告完成，获得次数
   const fetchMoreTime = () => {
