@@ -6,6 +6,7 @@ import { AtFloatLayout, AtCalendar } from 'taro-ui';
 import type { FC } from 'react';
 import LuComps from './components/LuComps';
 import ResultModal from './components/ResultModal';
+import { RouterUtil } from '@/utils';
 import MoreTimeModal from './components/MoreTimeModal';
 import './index.less';
 import 'taro-ui/dist/style/components/float-layout.scss';
@@ -69,11 +70,11 @@ const Page: FC = () => {
   // 获取当前时间的时间戳
   const currentTime = new Date().getTime();
 
-  // 增加两天的毫秒数
-  const oneDay = 2 * 24 * 60 * 60 * 1000;
+  // 增加毫秒数
+  const oneDay = 1 * 12 * 60 * 60 * 1000;
 
   // 计算明天的时间戳 修改处
-  const tomorrowTime = 1717037244224 + oneDay;
+  const tomorrowTime = 1717045908144 + oneDay;
 
   // 广告完成，获得次数
   const fetchMoreTime = () => {
@@ -225,6 +226,12 @@ const Page: FC = () => {
                   : `敬拜财神 (剩${count}次)`}
               </View>
             </View>
+          </View>
+          <View
+            className={`${root}-btnBoxLink`}
+            onClick={() => RouterUtil.navigateTo(`/pages/complain/index`)}
+          >
+            投诉
           </View>
         </View>
       )}

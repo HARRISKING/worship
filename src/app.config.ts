@@ -1,9 +1,7 @@
 import getConfigs from './utils/TaroSupply/configs';
 
 export default getConfigs({
-  pages: [
-    'pages/home/index',
-  ],
+  pages: ['pages/home/index', 'pages/complain/index'],
   preloadRule: {
     'pages/home/index': {
       network: 'all',
