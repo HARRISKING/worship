@@ -189,25 +189,25 @@ const Page: FC = () => {
           <View className={`${root}-processBox`}>
             <LuComps
               imgName={
-                'https://fe-cloud.uni-ubi.com/image/1716622900318-fc.png?x-oss-process=img/q/80'
+                'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/fc.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367602&Signature=DkCkzAIO4Z%2B%2FzEtpjztl6BP%2BCA0%3D'
               }
               rate={rateValue > 0 ? rateValue : 0}
             />
             <LuComps
               imgName={
-                'https://fe-cloud.uni-ubi.com/image/1716622900322-jk.png?x-oss-process=img/q/80'
+                'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/jk.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367617&Signature=zk2ZqjRGAtXy9QPKaoa%2BDD%2F%2B2Go%3D'
               }
               rate={rateValue - 100 > 0 ? rateValue - 100 : 0}
             />
             <LuComps
               imgName={
-                'https://fe-cloud.uni-ubi.com/image/1716622900323-th.png?x-oss-process=img/q/80'
+                'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/th.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367632&Signature=ibYzBzcIy35GwDAKlPcnM3qFy0M%3D'
               }
               rate={rateValue - 200 > 0 ? rateValue - 200 : 0}
             />
             <LuComps
               imgName={
-                'https://fe-cloud.uni-ubi.com/image/1716622900320-hy.png?x-oss-process=img/q/80'
+                'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/hy.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367648&Signature=TLTdGFDnx5YXJ8Yb1sk5PylMiLk%3D'
               }
               rate={rateValue - 300 > 0 ? rateValue - 300 : 0}
             />
@@ -217,7 +217,7 @@ const Page: FC = () => {
               <Image
                 className={`${root}-btnBox-btn-icon`}
                 src={
-                  'https://fe-cloud.uni-ubi.com/image/1716622900325-yuanbao.png?x-oss-process=img/q/80'
+                  'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/yuanbao.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367586&Signature=jNRZgDHyxiI9%2F90PHW5WEi5fqw0%3D'
                 }
               />
               <View>
@@ -231,6 +231,10 @@ const Page: FC = () => {
             className={`${root}-btnBoxLink`}
             onClick={() => RouterUtil.navigateTo(`/pages/complain/index`)}
           >
+            <Image
+              className={`${root}-btnBoxLink-icon`}
+              src="https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/%E6%8A%95%E8%AF%89%281%29.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367998&Signature=IiOax9eNqZTl7%2F79x7RyV%2Fk3Mhg%3D"
+            />
             投诉
           </View>
         </View>

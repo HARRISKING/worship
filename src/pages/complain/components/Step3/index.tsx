@@ -36,7 +36,7 @@ const Step3: React.FC<IStep3Props> = ({ keyVal, onEmit }) => {
           <Image
             className={`${root}-target-body-icon`}
             src={
-              'https://fe-cloud.uni-ubi.com/image/1717045717520-版本3.png?x-oss-process=img/q/80'
+              'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/%E7%89%88%E6%9C%AC3.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367264&Signature=%2B2Q5BY%2BvWj8hgeFisWGqymvnKMk%3D'
             }
           />
           <View className={`${root}-target-body-name`}>天官赐富</View>
@@ -62,8 +62,8 @@ const Step3: React.FC<IStep3Props> = ({ keyVal, onEmit }) => {
               className={`${root}-content-btnBox-tips-icon`}
               src={
                 isSelect
-                  ? 'https://fe-cloud.uni-ubi.com/image/1705379681671-选择 (1) (1).png?x-oss-process=img/q/80'
-                  : 'https://fe-cloud.uni-ubi.com/image/1705379681677-选择 (2).png?x-oss-process=img/q/80'
+                  ? 'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/select.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779361305&Signature=mf3Y16nCm8GXfMWLH8G3xkvTrFc%3D'
+                  : 'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/notSelect.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779361340&Signature=9qDY4CtqRm1XktBNyXswJDv5%2B2k%3D'
               }
             />
             <View className={`${root}-content-btnBox-tips-info`}>

@@ -10,7 +10,7 @@ const Step4: React.FC<IStep4Props> = () => {
       <Image
         className={`${root}-icon`}
         src={
-          'https://fe-cloud.uni-ubi.com/image/1705379681671-选择 (1) (1).png?x-oss-process=img/q/80'
+          'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/select.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779361305&Signature=mf3Y16nCm8GXfMWLH8G3xkvTrFc%3D'
         }
       />
       <View className={`${root}-title`}>投诉成功</View>
