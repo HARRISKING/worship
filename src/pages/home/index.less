@@ -1,5 +1,5 @@
 .home {
-  background-image: url('https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/bg.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367513&Signature=OyjiQODVJ0Gcg1eqM15OouHi5RU%3D');
+  background-image: url('https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/bg-min.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1780314994&Signature=uellhtFpG4MTNMYRWzouO6RhZ4o%3D');
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -35,6 +35,19 @@
       border: 3vw solid #fec30a;
     }
   }
+  &-frontBG {
+    height: 66.5vw;
+    width: 66.5vw;
+    border-radius: 50%;
+    background-image: url('../../assets/images/worshipBg.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 11vh;
+    left: 50%;
+    margin-left: -33vw;
+    z-index: 999;
+  }
   &-mammon {
     height: 100vw;
     width: 100vw;
@@ -53,18 +66,10 @@
       width: 100vw;
       border-radius: 50%;
       position: absolute;
+      z-index: 1;
       opacity: 0.2;
       background: radial-gradient(circle at 50% 50%, transparent, #ff9800);
-      animation: rippleAnimation 5s infinite;
-    }
-    &-item2 {
-      height: 100vw;
-      width: 100vw;
-      border-radius: 50%;
-      position: absolute;
-      opacity: 0.2;
-      background: radial-gradient(circle at 50% 50%, transparent, gold);
-      animation: rippleAnimation 7s infinite;
+      animation: rippleAnimation 0.1s infinite;
     }
   }
   &-processBox {

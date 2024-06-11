@@ -14,7 +14,7 @@ import 'taro-ui/dist/style/components/calendar.scss';
 const Page: FC = () => {
   const root = 'home';
   const [rateValue, setRateValue] = useState(0);
-  const [count, setCount] = useState(4);
+  const [count, setCount] = useState<0 | 1 | 2 | 3 | 4>(4);
   const [isOpened, setIsOpened] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [moreVisible, setMoreVisible] = useState(false);
@@ -71,10 +71,10 @@ const Page: FC = () => {
   const currentTime = new Date().getTime();
 
   // 增加毫秒数
-  const oneDay = 1 * 12 * 60 * 60 * 1000;
+  const oneDay = 1 * 48 * 60 * 60 * 1000;
 
   // 计算明天的时间戳 修改处
-  const tomorrowTime = 1717045908144 + oneDay;
+  const tomorrowTime = 1717160618078 + oneDay;
 
   // 广告完成，获得次数
   const fetchMoreTime = () => {
@@ -97,6 +97,7 @@ const Page: FC = () => {
         }
       });
     }
+
     // 用户触发广告后，显示激励视频广告
     if (videoAd) {
       videoAd.show().catch(() => {
@@ -137,6 +138,22 @@ const Page: FC = () => {
     setDate(e.value);
   };
 
+  const formatNumber = (int: 0 | 1 | 2 | 3 | 4) => {
+    switch (int) {
+      case 0:
+        return '0';
+      case 1:
+        return 'I';
+      case 2:
+        return 'II';
+      case 3:
+        return 'III';
+      case 4:
+        return 'IV';
+      default:
+        return 'IV';
+    }
+  };
   useEffect(() => {
     // 将屏幕亮度调至最亮
     wx.setScreenBrightness({
@@ -182,9 +199,9 @@ const Page: FC = () => {
         </View>
       ) : (
         <View>
+          <View className={`${root}-frontBG`} />
           <View className={`${root}-mammon`}>
             <View className={`${root}-mammon-item1`}></View>
-            <View className={`${root}-mammon-item2`}></View>
           </View>
           <View className={`${root}-processBox`}>
             <LuComps
@@ -223,7 +240,7 @@ const Page: FC = () => {
               <View>
                 {rateValue === 400
                   ? '今日功德圆满，大吉大利～'
-                  : `敬拜财神 (剩${count}次)`}
+                  : `敬拜财神 (剩${formatNumber(count)}次)`}
               </View>
             </View>
           </View>
