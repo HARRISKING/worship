@@ -33,13 +33,13 @@ const ResultModal: React.FC<IResultModalProps> = ({
             “{resultContent?.words || '财运亨通'}”
           </View>
         </View>
-        <View className={`${root}-content`}>
+        {/* <View className={`${root}-content`}>
           此次敬拜，恭喜您击败了全国
           <View style={{ fontSize: 24, color: 'red', margin: '0 6px' }}>
             {resultContent?.num || 0}%
           </View>
           的用户。
-        </View>
+        </View> */}
         <View className={`${root}-btn`} onClick={onCancel}>
           <View>{btnText}</View>
         </View>

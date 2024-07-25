@@ -16,7 +16,7 @@ import PassComps from './components/PassComps';
 const Page: FC = () => {
   const root = 'home';
   const [rateValue, setRateValue] = useState(0);
-  const [count, setCount] = useState<number>(4);
+  const [count, setCount] = useState<number>(12);
   const [isOpened, setIsOpened] = useState(false);
   const [siderBarVisible, setSiderBarVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
@@ -90,7 +90,6 @@ const Page: FC = () => {
     if (rateValue > 330) {
       // 在页面中定义激励视频广告
       let videoAd: any = null;
-
       // 在页面onLoad回调事件中创建激励视频广告实例
       // @ts-ignore
       if (wx.createRewardedVideoAd) {
@@ -104,12 +103,13 @@ const Page: FC = () => {
         });
         videoAd?.onClose((res) => {
           if (res?.isEnded) {
-            setCount(4);
+            setCount(8);
+            setMoreVisible(false);
+          } else {
             setMoreVisible(false);
           }
         });
       }
-
       // 用户触发广告后，显示激励视频广告
       if (videoAd) {
         setSiderBarVisible(false);
@@ -124,7 +124,7 @@ const Page: FC = () => {
         });
       }
     } else {
-      setCount(4);
+      setCount(8);
       setMoreVisible(false);
     }
   };
@@ -154,23 +154,6 @@ const Page: FC = () => {
 
   const onDayClick = (e) => {
     setDate(e.value);
-  };
-
-  const formatNumber = (int: number) => {
-    switch (int) {
-      case 0:
-        return '0';
-      case 1:
-        return 'I';
-      case 2:
-        return 'II';
-      case 3:
-        return 'III';
-      case 4:
-        return 'IV';
-      default:
-        return 'IV';
-    }
   };
 
   const handleTouchStart = (e) => {
@@ -203,6 +186,11 @@ const Page: FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (count === 0) {
+      setMoreVisible(true);
+    }
+  }, [count]);
   return (
     <View className={root}>
       {!(currentTime > tomorrowTime) ? (
@@ -215,7 +203,7 @@ const Page: FC = () => {
             onTouchEnd={handleTouchEnd}
           >
             <SiderBar visible={siderBarVisible} />
-            <View className={`${root}-frontBG`} />
+            <View className={`${root}-frontBG`}></View>
             <View className={`${root}-mammon`}>
               <View className={`${root}-mammon-item1`}></View>
             </View>
@@ -245,6 +233,15 @@ const Page: FC = () => {
                 rate={rateValue - 300 > 0 ? rateValue - 300 : 0}
               />
             </View>
+            <View className={`${root}-tips`}>
+              <View>右滑进入个人中心</View>
+              <Image
+                className={`${root}-tips-icon`}
+                src={
+                  'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/worship/%E6%96%B9%E5%90%91%E5%90%91%E5%8F%B3-%E5%8F%8C.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1784117566&Signature=88UF2nt0iO%2BhxZzQcBhlHjGNGaU%3D'
+                }
+              />
+            </View>
           </View>
           <View className={`${root}-btnBox`} onClick={onSubmit}>
             <View className={`${root}-btnBox-btn`}>
@@ -257,7 +254,7 @@ const Page: FC = () => {
               <View>
                 {rateValue === 400
                   ? '今日功德圆满，大吉大利～'
-                  : `敬拜财神 (剩 ${formatNumber(count)} 次)`}
+                  : `敬拜财神 (剩 ${count} 次)`}
               </View>
             </View>
           </View>

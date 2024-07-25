@@ -17,7 +17,7 @@ const MoreTimeModal: React.FC<IMoreTimeModalProps> = ({ visible, onOk }) => {
       <AtModalContent>
         <View className={`${root}-content`}>{'哎呀，敬拜次数用完啦～'}</View>
         <View className={`${root}-btn`} onClick={onOk}>
-          <View>获得更多次数</View>
+          <View>观看视频获得更多次数</View>
         </View>
       </AtModalContent>
     </AtModal>
