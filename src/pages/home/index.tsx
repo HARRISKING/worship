@@ -11,10 +11,11 @@ import MoreTimeModal from './components/MoreTimeModal';
 import './index.less';
 import 'taro-ui/dist/style/components/float-layout.scss';
 import 'taro-ui/dist/style/components/calendar.scss';
+import PassComps from './components/PassComps';
 const Page: FC = () => {
   const root = 'home';
   const [rateValue, setRateValue] = useState(0);
-  const [count, setCount] = useState<0 | 1 | 2 | 3 | 4>(4);
+  const [count, setCount] = useState<number>(4);
   const [isOpened, setIsOpened] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [moreVisible, setMoreVisible] = useState(false);
@@ -80,10 +81,12 @@ const Page: FC = () => {
   const fetchMoreTime = () => {
     if (rateValue > 330) {
       // 在页面中定义激励视频广告
-      let videoAd = null;
+      let videoAd: any = null;
 
       // 在页面onLoad回调事件中创建激励视频广告实例
+      // @ts-ignore
       if (wx.createRewardedVideoAd) {
+        // @ts-ignore
         videoAd = wx.createRewardedVideoAd({
           adUnitId: 'adunit-5bf9f7aa42580516',
         });
@@ -143,7 +146,7 @@ const Page: FC = () => {
     setDate(e.value);
   };
 
-  const formatNumber = (int: 0 | 1 | 2 | 3 | 4) => {
+  const formatNumber = (int: number) => {
     switch (int) {
       case 0:
         return '0';
@@ -161,6 +164,7 @@ const Page: FC = () => {
   };
   useEffect(() => {
     // 将屏幕亮度调至最亮
+    // @ts-ignore
     wx.setScreenBrightness({
       value: 1,
     });
@@ -169,39 +173,7 @@ const Page: FC = () => {
   return (
     <View className={root}>
       {!(currentTime > tomorrowTime) ? (
-        <View className={`${root}-calendarBox`}>
-          <View className={`${root}-calendarBox-dateBox`}>
-            <View className={`${root}-calendarBox-dateBox-timeBox`}>
-              已过了
-              <View
-                style={{ color: '#fec30a', fontSize: 36, margin: '0 10px' }}
-              >
-                {moment(date?.start).dayOfYear()}
-              </View>
-              天
-            </View>
-            <View className={`${root}-calendarBox-dateBox-timeBox`}>
-              本年第
-              <View
-                style={{ color: '#fec30a', fontSize: 36, margin: '0 10px' }}
-              >
-                {moment(date?.start).week()}
-              </View>
-              周
-            </View>
-            <View className={`${root}-calendarBox-dateBox-timeBox`}>
-              ISO周号为
-              <View
-                style={{ color: '#fec30a', fontSize: 36, margin: '0 10px' }}
-              >
-                {moment(date?.start).isoWeek()}
-              </View>
-            </View>
-          </View>
-          <View className={`${root}-calendarBox-calendar`}>
-            <AtCalendar onSelectDate={onDayClick} />
-          </View>
-        </View>
+        <PassComps onDayClick={onDayClick} date={date} />
       ) : (
         <View>
           <View className={`${root}-frontBG`} />
