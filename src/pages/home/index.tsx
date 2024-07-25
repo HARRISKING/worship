@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Taro from '@tarojs/taro';
 import moment from 'moment';
 import { View, Image } from '@tarojs/components';
-import { AtFloatLayout, AtCalendar } from 'taro-ui';
+import { AtFloatLayout } from 'taro-ui';
 import type { FC } from 'react';
 import LuComps from './components/LuComps';
 import ResultModal from './components/ResultModal';
 import { RouterUtil } from '@/utils';
+import SiderBar from './components/SiderBar';
 import MoreTimeModal from './components/MoreTimeModal';
 import './index.less';
 import 'taro-ui/dist/style/components/float-layout.scss';
@@ -17,9 +18,14 @@ const Page: FC = () => {
   const [rateValue, setRateValue] = useState(0);
   const [count, setCount] = useState<number>(4);
   const [isOpened, setIsOpened] = useState(false);
+  const [siderBarVisible, setSiderBarVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [moreVisible, setMoreVisible] = useState(false);
   const [resultContent, setResultContent] = useState({});
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
+  const [touchStartY, setTouchStartY] = useState(0);
+  const [touchEndY, setTouchEndY] = useState(0);
   const [date, setDate] = useState<{ start: string; end: string }>({
     start: moment().format('YYYY-MM-DD'),
   } as any);
@@ -60,6 +66,7 @@ const Page: FC = () => {
     setRateValue(prev);
   };
   const onOpen = () => {
+    setSiderBarVisible(false);
     Taro.vibrateLong();
     setIsOpened(true);
     setTimeout(() => {
@@ -79,6 +86,7 @@ const Page: FC = () => {
 
   // 广告完成，获得次数
   const fetchMoreTime = () => {
+    setSiderBarVisible(false);
     if (rateValue > 330) {
       // 在页面中定义激励视频广告
       let videoAd: any = null;
@@ -104,6 +112,7 @@ const Page: FC = () => {
 
       // 用户触发广告后，显示激励视频广告
       if (videoAd) {
+        setSiderBarVisible(false);
         videoAd.show().catch(() => {
           // 失败重试
           videoAd
@@ -121,6 +130,7 @@ const Page: FC = () => {
   };
 
   const onSubmit = () => {
+    setSiderBarVisible(false);
     if (rateValue < 400) {
       if (count > 0) {
         onOpen();
@@ -162,6 +172,29 @@ const Page: FC = () => {
         return 'IV';
     }
   };
+
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].pageX);
+    setTouchStartY(e.touches[0].pageY);
+  };
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.touches[0].pageX);
+    setTouchEndY(e.touches[0].pageY);
+  };
+
+  const handleTouchEnd = () => {
+    const deltaX = touchStartX - touchEndX;
+    const deltaY = touchStartY - touchEndY;
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      // 当手指左滑（结束位置小于起始位置）时触发某些操作
+      if (deltaX > 0) {
+        setSiderBarVisible(false);
+      } else if (deltaX < 0) {
+        setSiderBarVisible(true);
+      }
+      Taro.vibrateShort();
+    }
+  };
   useEffect(() => {
     // 将屏幕亮度调至最亮
     // @ts-ignore
@@ -176,35 +209,42 @@ const Page: FC = () => {
         <PassComps onDayClick={onDayClick} date={date} />
       ) : (
         <View>
-          <View className={`${root}-frontBG`} />
-          <View className={`${root}-mammon`}>
-            <View className={`${root}-mammon-item1`}></View>
-          </View>
-          <View className={`${root}-processBox`}>
-            <LuComps
-              imgName={
-                'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/fc.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367602&Signature=DkCkzAIO4Z%2B%2FzEtpjztl6BP%2BCA0%3D'
-              }
-              rate={rateValue > 0 ? rateValue : 0}
-            />
-            <LuComps
-              imgName={
-                'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/jk.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367617&Signature=zk2ZqjRGAtXy9QPKaoa%2BDD%2F%2B2Go%3D'
-              }
-              rate={rateValue - 100 > 0 ? rateValue - 100 : 0}
-            />
-            <LuComps
-              imgName={
-                'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/th.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367632&Signature=ibYzBzcIy35GwDAKlPcnM3qFy0M%3D'
-              }
-              rate={rateValue - 200 > 0 ? rateValue - 200 : 0}
-            />
-            <LuComps
-              imgName={
-                'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/hy.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367648&Signature=TLTdGFDnx5YXJ8Yb1sk5PylMiLk%3D'
-              }
-              rate={rateValue - 300 > 0 ? rateValue - 300 : 0}
-            />
+          <View
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <SiderBar visible={siderBarVisible} />
+            <View className={`${root}-frontBG`} />
+            <View className={`${root}-mammon`}>
+              <View className={`${root}-mammon-item1`}></View>
+            </View>
+            <View className={`${root}-processBox`}>
+              <LuComps
+                imgName={
+                  'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/fc.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367602&Signature=DkCkzAIO4Z%2B%2FzEtpjztl6BP%2BCA0%3D'
+                }
+                rate={rateValue > 0 ? rateValue : 0}
+              />
+              <LuComps
+                imgName={
+                  'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/jk.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367617&Signature=zk2ZqjRGAtXy9QPKaoa%2BDD%2F%2B2Go%3D'
+                }
+                rate={rateValue - 100 > 0 ? rateValue - 100 : 0}
+              />
+              <LuComps
+                imgName={
+                  'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/th.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367632&Signature=ibYzBzcIy35GwDAKlPcnM3qFy0M%3D'
+                }
+                rate={rateValue - 200 > 0 ? rateValue - 200 : 0}
+              />
+              <LuComps
+                imgName={
+                  'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/hy.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1779367648&Signature=TLTdGFDnx5YXJ8Yb1sk5PylMiLk%3D'
+                }
+                rate={rateValue - 300 > 0 ? rateValue - 300 : 0}
+              />
+            </View>
           </View>
           <View className={`${root}-btnBox`} onClick={onSubmit}>
             <View className={`${root}-btnBox-btn`}>
