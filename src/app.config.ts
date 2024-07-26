@@ -15,4 +15,7 @@ export default getConfigs({
     navigationBarTextStyle: 'black',
     navigationStyle: 'custom', // 需要自定义头部时开启，可用 layouts/BasicLayout 自定义头部
   },
+  usingComponents: {
+    heatmap: 'plugin://myPlugin/heatmap',
+  },
 } as any);

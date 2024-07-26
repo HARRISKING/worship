@@ -1,7 +1,7 @@
 .siderbar {
   background-color: #24180e;
   height: 100vh;
-  width: 87vw;
+  width: 79vw;
   position: fixed;
   left: 0;
   top: 0;
@@ -9,9 +9,33 @@
   opacity: 0;
   transform: translateX(-100%);
   transition: all 0.5s ease; /* 过渡时间设置为0.5秒 */
+  padding: 36px;
   &-show {
     opacity: 1;
     transform: translateX(0);
     transition: all 0.5s ease; /* 过渡时间设置为0.5秒 */
+  }
+  &-infoBox {
+    display: flex;
+    align-items: center;
+    margin-top: 4vh;
+    &-name {
+      font-size: 38px;
+      font-weight: bold;
+      color: #fec30a;
+    }
+    &-tag {
+      background-color: #fec30a;
+      border-radius: 8px;
+      color: #24180e;
+      font-style: italic;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 4px 16px;
+      margin-left: 3vw;
+    }
+  }
+  &-hotmap {
+    margin-top: 2vh;
   }
 }
