@@ -1,7 +1,39 @@
 .hotMap {
-  width: 100%;
-  height: 30vh;
-  margin: 0 auto;
-  background-color: #fec30a;
-  border-radius: 12px;
+  &-innerBox {
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &-weekTips {
+      color: #fec30a;
+      font-size: 24px;
+      font-style: italic;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 25vh;
+      &-first {
+      }
+      &-secound {
+      }
+    }
+  }
+  &-monthTips {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #fec30a;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 20px;
+    &-first {
+    }
+    &-secound {
+    }
+  }
 }

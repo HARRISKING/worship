@@ -8779,11 +8779,6 @@ react-dom@^17.0.2:
     object-assign "^4.1.1"
     scheduler "^0.20.2"
 
-react-grid-heatmap@^1.3.0:
-  version "1.3.0"
-  resolved "http://npm.uniubi.com/react-grid-heatmap/-/react-grid-heatmap-1.3.0.tgz#e3034eac092f9a9850d67e4d7a02fc83a717f63d"
-  integrity sha512-DzD39plU6+gF1qvhh8G3eeRTvnkHV57JMFHUl+CUUbvgcM4Vj35dS6SOwqN04gaWkZuw6UqVPxPQOTuUzxht5Q==
-
 "react-is@^16.12.0 || ^17.0.0 || ^18.0.0":
   version "18.2.0"
   resolved "http://npm.uniubi.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"

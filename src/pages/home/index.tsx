@@ -18,7 +18,7 @@ const Page: FC = () => {
   const [rateValue, setRateValue] = useState(0);
   const [count, setCount] = useState<number>(12);
   const [isOpened, setIsOpened] = useState(false);
-  const [siderBarVisible, setSiderBarVisible] = useState(false);
+  const [siderBarVisible, setSiderBarVisible] = useState(true);
   const [resultVisible, setResultVisible] = useState(false);
   const [moreVisible, setMoreVisible] = useState(false);
   const [resultContent, setResultContent] = useState({});
@@ -233,7 +233,10 @@ const Page: FC = () => {
                 rate={rateValue - 300 > 0 ? rateValue - 300 : 0}
               />
             </View>
-            <View className={`${root}-tips`}>
+            <View
+              className={`${root}-tips`}
+              onClick={() => setSiderBarVisible(true)}
+            >
               <View>右滑进入个人中心</View>
               <Image
                 className={`${root}-tips-icon`}
