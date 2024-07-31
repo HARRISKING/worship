@@ -13,14 +13,14 @@ import './index.less';
 import 'taro-ui/dist/style/components/float-layout.scss';
 import 'taro-ui/dist/style/components/calendar.scss';
 import PassComps from './components/PassComps';
-import { postApiV1Hotmaps } from '@/api';
+import { postApiV1Hotmaps, getApiV1Hotmaps } from '@/api';
 import { useRequest } from 'ahooks';
 const Page: FC = () => {
   const root = 'home';
   const [rateValue, setRateValue] = useState(0);
   const [count, setCount] = useState<number>(12);
   const [isOpened, setIsOpened] = useState(false);
-  const [siderBarVisible, setSiderBarVisible] = useState(true);
+  const [siderBarVisible, setSiderBarVisible] = useState(false);
   const [resultVisible, setResultVisible] = useState(false);
   const [moreVisible, setMoreVisible] = useState(false);
   const [resultContent, setResultContent] = useState({});
@@ -35,6 +35,22 @@ const Page: FC = () => {
   const { run: updateHotmap } = useRequest(postApiV1Hotmaps, {
     manual: true,
   });
+
+  const { run: fetchHotList } = useRequest(getApiV1Hotmaps, {
+    manual: true,
+    onSuccess: (res) => {
+      const today_value =
+        res?.data?.today_value >= 14 ? 14 : res?.data?.today_value || 0;
+      setRateValue(30 * (today_value || 0));
+      setCount(14 - today_value <= 0 ? 0 : 14 - today_value);
+    },
+  });
+  const fetchBasicInfo = async () => {
+    const res = await wx.login();
+    if (res?.code) {
+      fetchHotList({ open_id: res.code });
+    }
+  };
   const formatResult = () => {
     let resultObj;
     if (rateValue >= 99 && rateValue < 132) {
@@ -55,7 +71,7 @@ const Page: FC = () => {
         words: '十里桃花',
         num: (Math.random() * 40 + 40).toFixed(2),
       };
-    } else if (rateValue >= 396 && rateValue < 429) {
+    } else if (rateValue >= 396 && rateValue < 419) {
       resultObj = {
         tagName: '好运',
         words: '时来运转',
@@ -92,7 +108,7 @@ const Page: FC = () => {
   // 广告完成，获得次数
   const fetchMoreTime = () => {
     setSiderBarVisible(false);
-    if (rateValue > 330) {
+    if (rateValue > 330 && rateValue < 400) {
       // 在页面中定义激励视频广告
       let videoAd: any = null;
       // 在页面onLoad回调事件中创建激励视频广告实例
@@ -156,7 +172,7 @@ const Page: FC = () => {
       (rateValue > 99 && rateValue < 132) ||
       (rateValue > 198 && rateValue < 231) ||
       (rateValue > 297 && rateValue < 330) ||
-      (rateValue > 396 && rateValue < 429)
+      (rateValue > 396 && rateValue < 419)
     ) {
       formatResult();
       setResultVisible(true);
@@ -195,10 +211,11 @@ const Page: FC = () => {
     wx.setScreenBrightness({
       value: 1,
     });
+    fetchBasicInfo();
   }, []);
 
   useEffect(() => {
-    if (count === 0) {
+    if (count === 0 && rateValue > 330 && rateValue < 400) {
       setMoreVisible(true);
     }
   }, [count]);
@@ -266,7 +283,7 @@ const Page: FC = () => {
                 }
               />
               <View>
-                {rateValue === 400
+                {rateValue >= 400
                   ? '今日功德圆满，大吉大利～'
                   : `敬拜财神 (剩 ${count} 次)`}
               </View>

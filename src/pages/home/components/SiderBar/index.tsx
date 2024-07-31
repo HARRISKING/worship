@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { getApiV1Hotmaps } from '@/api';
+import { useRequest } from 'ahooks';
 import { View, Image } from '@tarojs/components';
 import HotMap from '../HotMap';
 import './index.less';
@@ -8,7 +10,19 @@ interface ISiderBarProps {
 }
 const SiderBar: React.FC<ISiderBarProps> = ({ visible }) => {
   const root = 'siderbar';
-
+  const { data: hotList, run: fetchHotList } = useRequest(getApiV1Hotmaps, {
+    manual: true,
+  });
+  const fetchInfo = async () => {
+    const res = await wx.login();
+    if (res?.code) {
+      fetchHotList({ open_id: res.code });
+    }
+  };
+  useEffect(() => {
+    if (!visible) return;
+    fetchInfo();
+  }, [visible]);
   return (
     <View className={classNames(root, visible && `${root}-show`)}>
       <View className={`${root}-infoBox`}>
@@ -17,20 +31,28 @@ const SiderBar: React.FC<ISiderBarProps> = ({ visible }) => {
       </View>
       <View className={`${root}-countBox`}>
         <View className={`${root}-countBox-item`}>
-          <View className={`${root}-countBox-item-value`}>12</View>
+          <View className={`${root}-countBox-item-value`}>
+            {hotList?.data?.today_value || 0}
+          </View>
           <View className={`${root}-countBox-item-title`}>今日参拜</View>
         </View>
         <View className={`${root}-countBox-item`}>
-          <View className={`${root}-countBox-item-value`}>80%</View>
-          <View className={`${root}-countBox-item-title`}>虔诚度</View>
+          <View className={`${root}-countBox-item-value`}>
+            {(((hotList?.data?.recently_count || 0) / 84) * 100)?.toFixed(1) ||
+              0}
+            %
+          </View>
+          <View className={`${root}-countBox-item-title`}>虔诚指数</View>
         </View>
         <View className={`${root}-countBox-item`}>
-          <View className={`${root}-countBox-item-value`}>3650</View>
+          <View className={`${root}-countBox-item-value`}>
+            {hotList?.data?.sumCount || 0}
+          </View>
           <View className={`${root}-countBox-item-title`}>打卡天数</View>
         </View>
       </View>
       <View className={`${root}-hotmap`}>
-        <HotMap />
+        <HotMap hotList={hotList?.data?.hot_values} />
       </View>
       <View className={`${root}-btn`}>
         <Image

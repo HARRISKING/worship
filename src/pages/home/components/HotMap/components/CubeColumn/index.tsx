@@ -11,7 +11,9 @@ const CubeColumnComps: React.FC<ICubeCompsProps> = ({ value }) => {
       {(value || []).map((item) => (
         <View
           className={`${root}-item`}
-          style={{ background: `rgba(254, 195, 10, ${(item / 12) * 100})` }}
+          style={{
+            background: `rgba(254, 195, 10, ${item / 12 || 0})`,
+          }}
         />
       ))}
     </View>
