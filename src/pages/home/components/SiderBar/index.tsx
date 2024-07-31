@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { getApiV1Hotmaps } from '@/api';
+import { AtIcon } from 'taro-ui';
 import { useRequest } from 'ahooks';
 import { View, Image } from '@tarojs/components';
 import HotMap from '../HotMap';
 import './index.less';
 import classNames from 'classnames';
+import 'taro-ui/dist/style/components/icon.scss';
 interface ISiderBarProps {
   visible: boolean;
 }
@@ -54,14 +56,19 @@ const SiderBar: React.FC<ISiderBarProps> = ({ visible }) => {
       <View className={`${root}-hotmap`}>
         <HotMap hotList={hotList?.data?.hot_values} />
       </View>
-      <View className={`${root}-btn`}>
-        <Image
-          className={`${root}-btn-icon`}
-          src={
-            'https://wechat-oss.s3.cn-south-1.jdcloud-oss.com/worship/%E6%96%B9%E5%90%91%E5%90%91%E5%8F%B3-%E5%8F%8C.png?AWSAccessKeyId=JDC_4C732AF01388729C725284951596&Expires=1784117566&Signature=88UF2nt0iO%2BhxZzQcBhlHjGNGaU%3D'
-          }
-        />
-        <View>左滑回首页</View>
+      <View className={`${root}-downBox`}>
+        <View className={`${root}-downBox-btn`}>
+          <View>联动财神庙</View>
+        </View>
+        <View className={`${root}-downBox-btn`}>
+          <View>财神名册</View>
+        </View>
+        <View className={`${root}-downBox-tips`}>
+          <View className={`${root}-downBox-tips-words`}>左滑返回首页</View>
+          <AtIcon value="chevron-right" size="22" color="#fec30a"></AtIcon>
+          <AtIcon value="chevron-right" size="22" color="#fec30a"></AtIcon>
+          <AtIcon value="chevron-right" size="22" color="#fec30a"></AtIcon>
+        </View>
       </View>
     </View>
   );
