@@ -7,7 +7,7 @@ export {
   rename,
 } from './common';
 export { EventsKey, useEvents } from './event';
-export { chooseImage,  uploadFile } from './file';
+export { chooseImage, uploadFile } from './file';
 export { Loading } from './loading';
 export { RouterUtil } from './router';
 export { Toast } from './toast';

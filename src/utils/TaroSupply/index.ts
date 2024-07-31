@@ -1,5 +1,4 @@
 import Taro from '@tarojs/taro';
-import { Method } from 'end-type-to-front-type';
 
 export default class TaroSupply {
   static readonly isDingDing: boolean = process.env.TARO_ENV === 'dd';
@@ -11,7 +10,7 @@ export default class TaroSupply {
    * @param options
    */
   static login(
-    options?: Omit<Taro.login.Option, 'success' | 'fail'>,
+    options?: Omit<Taro.login.Option, 'success' | 'fail'>
   ): Promise<Taro.login.SuccessCallbackResult> {
     const that = this;
     return new Promise((resolve, reject) => {
@@ -40,27 +39,9 @@ export default class TaroSupply {
    * @param options
    */
   static request(
-    options: Taro.request.Option & { params?: Record<string, any> },
+    options: Taro.request.Option & { params?: Record<string, any> }
   ) {
-    const { params, data: requestData, url, ...other } = options;
-    if (this.isDingDing) {
-      const dealParams = params
-        ? Object.keys(params || {})
-            ?.map((key) => `${key}=${params[key]}`)
-            ?.join('&')
-        : undefined;
-      const dealUrl = dealParams ? `${url}?${dealParams}` : url;
-      return Taro.request({
-        url: dealUrl,
-        data:
-          options.method === 'POST'
-            ? JSON.stringify(requestData)
-            : requestData,
-        ...other,
-      });
-    } else {
-      return Taro.request(options);
-    }
+    return Taro.request(options);
   }
   /**
    * 上传文件统一传参
@@ -82,7 +63,7 @@ export default class TaroSupply {
    * @param option
    */
   static chooseImage(
-    option?: Omit<Taro.chooseImage.Option, 'success' | 'fail'>,
+    option?: Omit<Taro.chooseImage.Option, 'success' | 'fail'>
   ): Promise<Taro.chooseImage.SuccessCallbackResult> {
     return new Promise((resolve, reject) => {
       Taro.chooseImage({

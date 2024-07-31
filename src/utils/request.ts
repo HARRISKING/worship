@@ -1,8 +1,7 @@
 import Taro from '@tarojs/taro';
 
-import { BaseResponse } from '@/tools/interface/base';
-import { Cache, CacheKey, Toast } from '@/tools/utils/index';
-import TaroSupply from '@/tools/utils/TaroSupply';
+import { BaseResponse } from '@/interface/base';
+import { Cache, CacheKey, Toast } from '@/utils/index';
 
 export const DEFAULT_TIP_MESSAGE = '请求失败，请刷新重试';
 
@@ -24,7 +23,7 @@ const request = (url, options) => {
     process.env.BASE_API || ''
   }${url || ''}`;
   return new Promise<BaseResponse>((resolve, reject) => {
-    TaroSupply.request({
+    Taro.request({
       timeout: 10000,
       mode: 'cors',
       success(res: any) {

@@ -13,6 +13,8 @@ import './index.less';
 import 'taro-ui/dist/style/components/float-layout.scss';
 import 'taro-ui/dist/style/components/calendar.scss';
 import PassComps from './components/PassComps';
+import { postApiV1Hotmaps } from '@/api';
+import { useRequest } from 'ahooks';
 const Page: FC = () => {
   const root = 'home';
   const [rateValue, setRateValue] = useState(0);
@@ -30,6 +32,9 @@ const Page: FC = () => {
     start: moment().format('YYYY-MM-DD'),
   } as any);
 
+  const { run: updateHotmap } = useRequest(postApiV1Hotmaps, {
+    manual: true,
+  });
   const formatResult = () => {
     let resultObj;
     if (rateValue >= 99 && rateValue < 132) {
@@ -128,12 +133,18 @@ const Page: FC = () => {
       setMoreVisible(false);
     }
   };
-
+  const fetchInfo = async () => {
+    const res = await wx.login();
+    if (res?.code) {
+      updateHotmap({ open_id: res.code });
+    }
+  };
   const onSubmit = () => {
     setSiderBarVisible(false);
     if (rateValue < 400) {
       if (count > 0) {
         onOpen();
+        fetchInfo();
       } else {
         setMoreVisible(true);
       }
