@@ -13,7 +13,7 @@ const MoreTimeModal: React.FC<IMoreTimeModalProps> = ({ visible, onOk }) => {
   const root = 'MoreTimeModal';
   React.useEffect(() => {}, []);
   return (
-    <AtModal closeOnClickOverlay={false} className={root} isOpened={visible}>
+    <AtModal className={root} isOpened={visible}>
       <AtModalContent>
         <View className={`${root}-content`}>{'哎呀，敬拜次数用完啦～'}</View>
         <View className={`${root}-btn`} onClick={onOk}>

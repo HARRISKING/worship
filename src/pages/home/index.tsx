@@ -39,10 +39,12 @@ const Page: FC = () => {
   const { run: fetchHotList } = useRequest(getApiV1Hotmaps, {
     manual: true,
     onSuccess: (res) => {
-      const today_value =
-        res?.data?.today_value >= 14 ? 14 : res?.data?.today_value || 0;
-      setRateValue(30 * (today_value || 0));
-      setCount(14 - today_value <= 0 ? 0 : 14 - today_value);
+      // const today_value =
+      //   res?.data?.today_value >= 14 ? 14 : res?.data?.today_value || 0;
+      // setRateValue(30 * (today_value || 0));
+      // setCount(14 - today_value <= 0 ? 0 : 14 - today_value);
+      setRateValue(30 * (0 || 0));
+      setCount(12 - 0 <= 0 ? 0 : 12 - 0);
     },
   });
   const fetchBasicInfo = async () => {
@@ -71,7 +73,7 @@ const Page: FC = () => {
         words: '十里桃花',
         num: (Math.random() * 40 + 40).toFixed(2),
       };
-    } else if (rateValue >= 396 && rateValue < 419) {
+    } else if (rateValue >= 396 && rateValue < 429) {
       resultObj = {
         tagName: '好运',
         words: '时来运转',
@@ -172,7 +174,7 @@ const Page: FC = () => {
       (rateValue > 99 && rateValue < 132) ||
       (rateValue > 198 && rateValue < 231) ||
       (rateValue > 297 && rateValue < 330) ||
-      (rateValue > 396 && rateValue < 419)
+      (rateValue > 396 && rateValue < 429)
     ) {
       formatResult();
       setResultVisible(true);
@@ -215,7 +217,7 @@ const Page: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (count === 0 && rateValue > 330 && rateValue < 400) {
+    if (count === 0) {
       setMoreVisible(true);
     }
   }, [count]);
