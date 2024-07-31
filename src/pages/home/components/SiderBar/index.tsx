@@ -6,6 +6,7 @@ import { View, Image } from '@tarojs/components';
 import HotMap from '../HotMap';
 import './index.less';
 import classNames from 'classnames';
+import { RouterUtil } from '@/utils';
 import 'taro-ui/dist/style/components/icon.scss';
 interface ISiderBarProps {
   visible: boolean;
@@ -57,10 +58,16 @@ const SiderBar: React.FC<ISiderBarProps> = ({ visible }) => {
         <HotMap hotList={hotList?.data?.hot_values} />
       </View>
       <View className={`${root}-downBox`}>
-        <View className={`${root}-downBox-btn`}>
+        <View
+          className={`${root}-downBox-btn`}
+          onClick={() => RouterUtil.navigateTo('/pages/placeList/index')}
+        >
           <View>联动财神庙</View>
         </View>
-        <View className={`${root}-downBox-btn`}>
+        <View
+          className={`${root}-downBox-btn`}
+          onClick={() => RouterUtil.navigateTo('/pages/WorshipList/index')}
+        >
           <View>财神名册</View>
         </View>
         <View className={`${root}-downBox-tips`}>
