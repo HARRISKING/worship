@@ -13,6 +13,15 @@ interface ISiderBarProps {
 }
 const SiderBar: React.FC<ISiderBarProps> = ({ visible }) => {
   const root = 'siderbar';
+  // 获取当前时间的时间戳
+  const currentTime = new Date().getTime();
+
+  // 增加毫秒数
+  const oneDay = 1 * 48 * 60 * 60 * 1000;
+
+  // 计算明天的时间戳 修改处
+  const tomorrowTime = 1722474582412 + oneDay;
+
   const { data: hotList, run: fetchHotList } = useRequest(getApiV1Hotmaps, {
     manual: true,
   });
@@ -57,26 +66,28 @@ const SiderBar: React.FC<ISiderBarProps> = ({ visible }) => {
       <View className={`${root}-hotmap`}>
         <HotMap hotList={hotList?.data?.hot_values} />
       </View>
-      <View className={`${root}-downBox`}>
-        <View
-          className={`${root}-downBox-btn`}
-          onClick={() => RouterUtil.navigateTo('/pages/placeList/index')}
-        >
-          <View>联动财神庙</View>
+      {currentTime > tomorrowTime && (
+        <View className={`${root}-downBox`}>
+          <View
+            className={`${root}-downBox-btn`}
+            onClick={() => RouterUtil.navigateTo('/pages/placeList/index')}
+          >
+            <View>联动财神庙</View>
+          </View>
+          <View
+            className={`${root}-downBox-btn`}
+            onClick={() => RouterUtil.navigateTo('/pages/WorshipList/index')}
+          >
+            <View>财神名册</View>
+          </View>
+          <View className={`${root}-downBox-tips`}>
+            <AtIcon value="chevron-left" size="22" color="#fec30a"></AtIcon>
+            <AtIcon value="chevron-left" size="22" color="#fec30a"></AtIcon>
+            <AtIcon value="chevron-left" size="22" color="#fec30a"></AtIcon>
+            <View className={`${root}-downBox-tips-words`}>左滑返回首页</View>
+          </View>
         </View>
-        <View
-          className={`${root}-downBox-btn`}
-          onClick={() => RouterUtil.navigateTo('/pages/WorshipList/index')}
-        >
-          <View>财神名册</View>
-        </View>
-        <View className={`${root}-downBox-tips`}>
-          <AtIcon value="chevron-left" size="22" color="#fec30a"></AtIcon>
-          <AtIcon value="chevron-left" size="22" color="#fec30a"></AtIcon>
-          <AtIcon value="chevron-left" size="22" color="#fec30a"></AtIcon>
-          <View className={`${root}-downBox-tips-words`}>左滑返回首页</View>
-        </View>
-      </View>
+      )}
     </View>
   );
 };

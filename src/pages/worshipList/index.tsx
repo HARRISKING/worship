@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import BasicLayout from '@/layout/BasicLayout';
 import 'taro-ui/dist/style/components/article.scss';
 
