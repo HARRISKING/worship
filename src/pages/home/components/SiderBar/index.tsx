@@ -71,10 +71,10 @@ const SiderBar: React.FC<ISiderBarProps> = ({ visible }) => {
           <View>财神名册</View>
         </View>
         <View className={`${root}-downBox-tips`}>
+          <AtIcon value="chevron-left" size="22" color="#fec30a"></AtIcon>
+          <AtIcon value="chevron-left" size="22" color="#fec30a"></AtIcon>
+          <AtIcon value="chevron-left" size="22" color="#fec30a"></AtIcon>
           <View className={`${root}-downBox-tips-words`}>左滑返回首页</View>
-          <AtIcon value="chevron-right" size="22" color="#fec30a"></AtIcon>
-          <AtIcon value="chevron-right" size="22" color="#fec30a"></AtIcon>
-          <AtIcon value="chevron-right" size="22" color="#fec30a"></AtIcon>
         </View>
       </View>
     </View>

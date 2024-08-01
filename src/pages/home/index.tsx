@@ -39,12 +39,10 @@ const Page: FC = () => {
   const { run: fetchHotList } = useRequest(getApiV1Hotmaps, {
     manual: true,
     onSuccess: (res) => {
-      // const today_value =
-      //   res?.data?.today_value >= 14 ? 14 : res?.data?.today_value || 0;
-      // setRateValue(30 * (today_value || 0));
-      // setCount(14 - today_value <= 0 ? 0 : 14 - today_value);
-      setRateValue(30 * (0 || 0));
-      setCount(12 - 0 <= 0 ? 0 : 12 - 0);
+      const today_value =
+        res?.data?.today_value >= 14 ? 14 : res?.data?.today_value || 0;
+      setRateValue(30 * (today_value || 0));
+      setCount(14 - today_value <= 0 ? -1 : 14 - today_value);
     },
   });
   const fetchBasicInfo = async () => {
@@ -105,7 +103,7 @@ const Page: FC = () => {
   const oneDay = 1 * 48 * 60 * 60 * 1000;
 
   // 计算明天的时间戳 修改处
-  const tomorrowTime = 1717160618078 + oneDay;
+  const tomorrowTime = 1722474582412 + oneDay;
 
   // 广告完成，获得次数
   const fetchMoreTime = () => {
@@ -213,7 +211,9 @@ const Page: FC = () => {
     wx.setScreenBrightness({
       value: 1,
     });
-    fetchBasicInfo();
+    if (currentTime > tomorrowTime) {
+      fetchBasicInfo();
+    }
   }, []);
 
   useEffect(() => {
