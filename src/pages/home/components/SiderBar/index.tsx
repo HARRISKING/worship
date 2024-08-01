@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { getApiV1Hotmaps } from '@/api';
 import { AtIcon } from 'taro-ui';
 import { useRequest } from 'ahooks';
-import { View, Image } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import HotMap from '../HotMap';
 import './index.less';
 import classNames from 'classnames';
