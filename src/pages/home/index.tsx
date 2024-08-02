@@ -40,9 +40,9 @@ const Page: FC = () => {
     manual: true,
     onSuccess: (res) => {
       const today_value =
-        res?.data?.today_value >= 14 ? 14 : res?.data?.today_value || 0;
+        res?.data?.today_value >= 12 ? 12 : res?.data?.today_value || 0;
       setRateValue(30 * (today_value || 0));
-      setCount(14 - today_value <= 0 ? -1 : 14 - today_value);
+      setCount(12 - today_value <= 0 ? -1 : 12 - today_value);
     },
   });
   const fetchBasicInfo = async () => {
