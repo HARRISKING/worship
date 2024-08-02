@@ -8,10 +8,10 @@ const PlaceList: React.FC<IPlaceListProps> = () => {
   const currentTime = new Date().getTime();
 
   // 增加毫秒数
-  const oneDay = 1 * 48 * 60 * 60 * 1000;
+  const oneDay = 1 * 6 * 60 * 60 * 1000;
 
   // 计算明天的时间戳 修改处
-  const tomorrowTime = 1722474582412 + oneDay;
+  const tomorrowTime = 1 + oneDay;
 
   return (
     <BasicLayout title={'联动财神庙'} back fill>
