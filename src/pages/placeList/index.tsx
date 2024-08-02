@@ -11,7 +11,7 @@ const PlaceList: React.FC<IPlaceListProps> = () => {
   const oneDay = 1 * 6 * 60 * 60 * 1000;
 
   // 计算明天的时间戳 修改处
-  const tomorrowTime = 1 + oneDay;
+  const tomorrowTime = 1722560766193 + oneDay;
 
   return (
     <BasicLayout title={'联动财神庙'} back fill>

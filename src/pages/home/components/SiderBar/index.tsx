@@ -20,7 +20,7 @@ const SiderBar: React.FC<ISiderBarProps> = ({ visible }) => {
   const oneDay = 1 * 6 * 60 * 60 * 1000;
 
   // 计算明天的时间戳 修改处
-  const tomorrowTime = 1 + oneDay;
+  const tomorrowTime = 1722560766193 + oneDay;
 
   const { data: hotList, run: fetchHotList } = useRequest(getApiV1Hotmaps, {
     manual: true,

@@ -41,7 +41,7 @@ const Page: FC = () => {
     onSuccess: (res) => {
       const today_value =
         res?.data?.today_value >= 12 ? 12 : res?.data?.today_value || 0;
-      setRateValue(30 * (today_value || 0));
+      setRateValue(30 * (res?.data?.today_value || 0));
       setCount(12 - today_value <= 0 ? -1 : 12 - today_value);
     },
   });
@@ -71,7 +71,7 @@ const Page: FC = () => {
         words: '十里桃花',
         num: (Math.random() * 40 + 40).toFixed(2),
       };
-    } else if (rateValue >= 396 && rateValue < 429) {
+    } else if (rateValue >= 396 && rateValue < 420) {
       resultObj = {
         tagName: '好运',
         words: '时来运转',
@@ -103,7 +103,7 @@ const Page: FC = () => {
   const oneDay = 1 * 6 * 60 * 60 * 1000;
 
   // 计算明天的时间戳 修改处
-  const tomorrowTime = 1 + oneDay;
+  const tomorrowTime = 1722560766193 + oneDay;
 
   // 广告完成，获得次数
   const fetchMoreTime = () => {
